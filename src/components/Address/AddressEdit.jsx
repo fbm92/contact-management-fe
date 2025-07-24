@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useEffectOnce, useLocalStorage } from "react-use";
 import { detailContactId } from "../../lib/api/ContactApi";
 import { alertError, alertSuccess } from "../../lib/alert";
@@ -15,6 +15,7 @@ export const AddressEdit = () => {
   const [province, setProvince] = useState("");
   const [country, setCountry] = useState("");
   const [postal_code, setPostalCode] = useState("");
+  const navigate = useNavigate()
 
   async function handleSave(e) {
     e.preventDefault();
@@ -24,6 +25,9 @@ export const AddressEdit = () => {
 
     if (response.status === 200) {
       await alertSuccess("Data Berhasil Diubah");
+      await navigate({
+        pathname: `/dashboard/contacts/${id}`,
+      });
     } else {
       await alertError(responseBody.errors);
     }

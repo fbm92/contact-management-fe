@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useEffectOnce, useLocalStorage } from "react-use";
 import { deleteContact, listContact } from "../../lib/api/ContactApi";
 import { alertConfirm, alertError } from "../../lib/alert";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { ContactCard } from "../card/ContactCard";
 
 export const ContactList = () => {
@@ -28,7 +28,7 @@ export const ContactList = () => {
   };
 
   const handleDeleteContact = async (id) => {
-    if (!(await alertConfirm("Apakah Anda Yakin ???"))) {
+    if (!(await alertConfirm("Are you sure ?"))) {
       return;
     }
 
@@ -220,6 +220,7 @@ export const ContactList = () => {
             first_name={contact.first_name} 
             last_name={contact.last_name} 
             email={contact.email} phone={contact.phone} 
+            onDelete={handleDeleteContact}
           />
         ))}
       </div>
