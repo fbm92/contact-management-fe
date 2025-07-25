@@ -3,7 +3,7 @@ export const userRegister = async ({ username, password, name }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
+      Accept: "application/json",
     },
     body: JSON.stringify({
       username,
@@ -17,7 +17,7 @@ export const userLogin = async ({ username, password }) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
+      Accept: "application/json",
     },
     body: JSON.stringify({
       username,
@@ -29,8 +29,8 @@ export const userDetail = async (token) => {
   return await fetch(`${import.meta.env.VITE_API_PATH}/users/current`, {
     method: "GET",
     headers: {
-      "Accept": "application/json",
-      "Authorization": token,
+      Accept: "application/json",
+      Authorization: token,
     },
   });
 };
@@ -38,9 +38,9 @@ export const userLogout = async (token) => {
   return await fetch(`${import.meta.env.VITE_API_PATH}/users/current`, {
     method: "DELETE",
     headers: {
-      "Accept": "application/json",
-      "Authorization": token,
-    }
+      Accept: "application/json",
+      Authorization: token,
+    },
   });
 };
 
@@ -49,11 +49,11 @@ export const userUpdateName = async (token, { name }) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": token,
+      Accept: "application/json",
+      Authorization: token,
     },
     body: JSON.stringify({
-      name
+      name,
     }),
   });
 };
@@ -62,11 +62,11 @@ export const userUpdatePassword = async (token, { password }) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": token,
+      Accept: "application/json",
+      Authorization: token,
     },
     body: JSON.stringify({
-      password
+      password,
     }),
   });
 };
