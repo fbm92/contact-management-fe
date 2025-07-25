@@ -215,11 +215,8 @@ export const ContactList = () => {
 
         {contacts.map((contact) => (
           <ContactCard 
-            key={contact.id} 
-            id={contact.id} 
-            first_name={contact.first_name} 
-            last_name={contact.last_name} 
-            email={contact.email} phone={contact.phone} 
+            key={contact.id}
+            contact={contact} 
             onDelete={handleDeleteContact}
           />
         ))}
