@@ -8,39 +8,33 @@ export const UserRegister = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     if (password !== confirmPassword) {
-        await alertError('Password not Match')
-        return
+      await alertError("Password not Match");
+      return;
     }
     const response = await userRegister({
-      username : username,
-      password : password,
-      name : name
-    })
-    
-    const responseBody = await response.json()
+      username: username,
+      password: password,
+      name: name,
+    });
+
+    const responseBody = await response.json();
     console.log(responseBody);
-    
-    
+
     if (response.status === 200) {
-      await alertSuccess('Register Successfully')
+      await alertSuccess("Register Successfully");
       await navigate({
-        pathname : '/login'
-      })
+        pathname: "/login",
+      });
     } else {
-      let result = ""
-      for (let index = 0; index < responseBody.errors.length; index++) {
-        result += `${responseBody.errors[index].message} ${responseBody.errors[index].path} \n`
-        
-      }
-      await alertError(result)
+      await alertError(result);
     }
-  }
+  };
 
   return (
     <div className="animate-fade-in bg-gray-800 bg-opacity-80 p-8 rounded-xl shadow-custom border border-gray-700 backdrop-blur-sm w-full max-w-md">
@@ -68,7 +62,7 @@ export const UserRegister = () => {
               placeholder="Choose a username"
               required=""
               value={username}
-              onChange={ (e) => setUsername(e.target.value) }
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
         </div>
@@ -128,7 +122,7 @@ export const UserRegister = () => {
               placeholder="Confirm your password"
               required=""
               value={confirmPassword}
-              onChange={(e)=> setConfirmPassword(e.target.value)}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
         </div>
