@@ -27,7 +27,11 @@ export const UserLogin = () => {
         pathname: "/dashboard/contacts",
       });
     } else {
-      await alertError(responseBody.errors);
+      let result = "";
+      for (let index = 0; index < responseBody.errors.length; index++) {
+        result += `${responseBody.errors[index].message} ${responseBody.errors[index].path} \n`;
+      }
+      await alertError(result);
     }
   };
 
