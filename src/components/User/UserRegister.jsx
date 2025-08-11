@@ -33,8 +33,12 @@ export const UserRegister = () => {
         pathname : '/login'
       })
     } else {
-      
-      await alertError(responseBody.errors)
+      let result = ""
+      for (let index = 0; index < responseBody.errors.length; index++) {
+        result += `${responseBody.errors[index].message} ${responseBody.errors[index].path} \n`
+        return result
+      }
+      await alertError(result)
     }
   }
 
