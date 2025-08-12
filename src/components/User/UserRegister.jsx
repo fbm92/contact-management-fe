@@ -32,7 +32,7 @@ export const UserRegister = () => {
         pathname: "/login",
       });
     } else {
-      await alertError(result);
+      await alertError(responseBody.errors);
     }
   };
 
